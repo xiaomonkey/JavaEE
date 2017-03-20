@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- form  定义表单标签     action  定义表单提交的位置   内网提交：绝对路径和相对路径    外网提交：必须是http协议
+												method    就是表单的提交方式   get   post     如果不设置默认是get提交方式
+												
+											面试题：
+											表单的提交方式，get跟post有什么区别？
+										1，	get提交方式，参数是拼接在url的后面   
+											post提交方式。参数是封装在请求体里面，不会显示在url后面     
+											2，get   提交数据不安全       post   敏感数据相对 安全
+											3，get提交数据最大1kb，  post  提交数据没有大小限制  可以提交大数据（提交附件一般使用post）
+	
+		input 标签  用来接受用户输入的数据，  
+				type  输入框的类型   
+							imgge 图片类型的提交按钮，提交表单时，会把鼠标点击图片时的坐标传过去
+							 text  文本框  
+							 password   密码     
+							radio  单选框，用name属性可以进行分组  
+							hidden  隐藏域，就是用来做例如用户编号等数据的存放
+		 name 用来定义输入框的名称  
+							 
+							 src    定义的图片的路径
+checked   单选／多选框   的默认选中  值可以是checked或者true
+
+seletet 标签    是选择框  
+                       name  属性   用来定义输入框名称，作为参数
+                       size  属性  用来定义选择框选择的个数
+                       option    标签   选择框的条目  
+                       			－value     属性   用来定义条目的值，如果不设置，就会把内容体作为值进行传递
+                       			
+ textarea   标签  文本域    name   用来定义文本与的名称 ，作为参数名   cols  用来定义行   raws定义列
+ 文本区域跟文本框区别
+     1，文本于可以换行  文本框不能换行
+     2，文本域的值在内容中，文本框在value中
+     
+     注意：input  select  textarea    统称为表单项
+ 						
+	-->
+	<form  action = "http://www.baidu.com" method = "get">
+<!--  file:///Users/musikid/Documents/codeRes/workspace/Day01/WebRoot/html/%E8%A1%A8%E5%8D%95%E6%A0%87%E7%AD%BE.html?username=xiaomign&pwd=123456&sex=man&hobby=code&hobby=yy&photo=demo.jpg-->
+		<a name = "top"></a>
+				用户编号（隐藏域）：<input type = "hideen" name = "userid"   />
+		<p>用户名：&nbsp;<input  type = "text" name = "username"/></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;密码：&nbsp;<input  type = "password" name = "pwd"/></p>
+		<p>性别：&nbsp;<input type = "radio"  name = "sex" checked = "checked"  value = "man"/>男&nbsp;<input type = "radio"  name = "sex"  value = "woman"/>女<br/></p>
+		<p>爱好： &nbsp;<input type ="checkbox" name = "hobby" value = "basketball"/>&nbsp;篮球 
+							&nbsp;<input type ="checkbox" name = "hobby" value = "code" />&nbsp;编程
+							&nbsp;<input type ="checkbox"  name = "hobby"  value = "yy"/>&nbsp;游泳</p>
+		<p>照片： <input type = "file" name = "photo"/></p>
+		<p>城市： <select name = "city" size = "4">
+		<option  value = "bj">北京</option>
+		<option  value = "shanghai">上海</option>
+		<option  value = "shenzhen">深圳</option>
+		<option  value = "guangzhou">广州</option>
+		
+		</select></p>
+		<p>简介：<textarea cols = "30"  raws = "10"  name = "jianjie"></textarea></p>
+		<input type = "image" src = "../img/demo.jpg"/>
+		<input type = "button" value = "我是按钮"/>
+		
+						<p>	<input type = "submit"  value = "注册"/> <input  type = "reset"  value = "取消"/></p>
+							
+							<a href = "#top">点击回顶部</a>
+	</form>
+
+</body>
+</html>

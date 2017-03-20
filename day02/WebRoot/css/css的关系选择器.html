@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>css的格式.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+    <!-- 
+    style     css代码一般写在style标签中   style标签一般写在<head></head>标签中
+    		-tyoe = text/css   
+    		<style type = "text/css">css代码</style>
+    		就是告诉浏览器里面是文本，需要用css引擎去解析 -->
+    		
+    <style type="text/css" >
+   /*  font {
+    color:blue;
+    } */
+  p {
+   font-size:20px;
+   color:red;
+  } 
+  
+  /* 关系选择器 */
+  p font{
+  	color:blue;
+  }
+
+ </style>
+ 
+  </head>
+  
+  <body>
+    <p class="haha">今天天气<font>好晴朗，</font></p ><font>就是风大</font>
+  
+  </body>
+</html>
