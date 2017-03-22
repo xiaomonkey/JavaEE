@@ -37,6 +37,256 @@
 - document.getElementsByName("name 属性值"),通过标签name属性获得元素们，name属性值可以重复。
 - document.getElementsByClassName("class 属性值")通过标签class属性获得元素们
 - document.getElementsByTagName("标签名称")通过标签名来获得元素们
+- 
+
+#####4.4Element 方法
+
+- appendChild() 指定元素内追加
+- insertBefore()  指定的元素前追加  elementNode.insertBefore(new_node,existing_node)  new_node当前新创建的element，exiting_node已经存在的
+- removeChild() 删除指定的元素，elementNode.removeChild(node)父元素删除子元素    element 必须是父元素，node 子元素 例如：childElement.parent.removeChild(childElement);
+
+
+---
+
+#5.计算器案例分析
+
+
+```
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	table{
+		background-color: #D9E4F1;
+	}
+
+	input[type=button]{
+		width: 38px;
+		height: 28px;
+		font-size: 14px;
+	}
+	input[type=button]:hover{
+		background-color: #FFEF8A;
+		border-color: #FFDB00;
+	}
+	
+	input[type=text]{
+		font-family:"Consolas";
+		font-size:24px;
+		height:30px;
+		padding-bottom:0;
+		padding-top:20px;
+		text-align:right;
+		width:198px;
+	}
+	
+	#equals{
+		height: 60px;
+		font-size: 20px;
+	}
+	#zero{
+		width: 80px;
+		
+	}
+
+</style>
+</head>
+<!-- onload事件，当页面加载成功之后将执行 -->
+<body onload= "init()">
+
+<table>
+		<tr>
+			<td colspan="5">
+				<input type="text" id="num" name="num" value="0"/>
+			</td>
+		</tr>
+		<tr>
+			<td >
+				<input type="button" name="" value="MC"/>
+			</td>
+			<td >
+				<input type="button" name="" value="MR"/>
+			</td>
+			<td >
+				<input type="button" name="" value="MS"/>
+			</td>
+			<td >
+				<input type="button" name="" value="M+"/>
+			</td>
+			<td >
+				<input type="button" name="" value="M-"/>
+			</td>
+		</tr>
+		<tr>
+			<td >
+				<input type="button" name="" value="←" style="font-size: 18px;"/>
+			</td>
+			<td >
+				<input type="button" name="" value="CE"/>
+			</td>
+			<td >
+				<input type="button" name="" value="C" onclick="clearData()"/>
+			</td>
+			<td >
+				<input type="button" name="" value="±" onclick="getOperator('±')"/>
+			</td>
+			<td >
+				<input type="button" name="" value="√"/>
+			</td>
+		</tr>
+		<tr>
+			<td >
+				<input type="button" name="" value="7" onclick="getNumber('7')"/>
+			</td>
+			<td >
+				<input type="button" name="" value="8"  onclick="getNumber('8')"/>
+			</td>
+			<td >
+				<input type="button" name="" value="9"  onclick="getNumber('9')"/>
+			</td>
+			<td >
+				<input type="button" name="" value="/"  onclick="getOperator('/')"/>
+			</td>
+			<td >
+				<input type="button" name="" value="%" onclick="getOperator('%')"/>
+			</td>
+		</tr>
+		<tr>
+			<td >
+				<input type="button" name="" value="4" onclick="getNumber('4')"/>
+			</td>
+			<td >
+				<input type="button" name="" value="5" onclick="getNumber('5')"/>
+			</td>
+			<td >
+				<input type="button" name="" value="6" onclick="getNumber('6')"/>
+			</td>
+			<td >
+				<input type="button" name="" value="*" onclick="getOperator('*')"/>
+			</td>
+			<td >
+				<input type="button" name="" value="1/x" />
+			</td>
+		</tr>
+		<tr>
+			<td >
+				<input type="button" name="" value="1" onclick="getNumber('1')"/>
+			</td>
+			<td >
+				<input type="button" name="" value="2" onclick="getNumber('2')"/>
+			</td>
+			<td >
+				<input type="button" name="" value="3" onclick="getNumber('3')"/>
+			</td>
+			<td >
+				<input type="button" name="" value="-"  onclick="getOperator('-')"/>
+			</td>
+			<td rowspan="2">
+				<input type="button" id="equals" name="" value="="  onclick="getOperator('=')"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" id="zero" name="" value="0"  onclick="getNumber('0')"/>
+			</td>
+			<td >
+				<input type="button" name="" value="."  onclick="getNumber('.')"/>
+			</td>
+			<td >
+				<input type="button" name="" value="+"  onclick="getOperator('+')"/>
+			</td>
+		</tr>
+	
+	</table>
+	
+<script type="text/javascript">
+		//全局变量
+		var firstNum = "";//操作符之前的
+		var secondNum ="";//操作符之后
+		var inputTextObj;
+		var operator;//操作符
+		//初始化方法，获得文本框
+	
+	function getNumber(num){
+		/* 	 if(operator){
+			 secondNum += num;
+			  inputTextObj.value = firstNum  +secondNum; 
+			 }else{ 
+			 firstNum += num;
+			  inputTextObj.value = firstNum; 
+			 } */
+		 firstNum += num;
+		  inputTextObj = document.getElementById("num");
+		inputTextObj.value = firstNum; 
+		 operator = undefined;//如果有数字写入，不再纪录操作符
+	}
+//操作
+function  getOperator(ope){
+			//operator = ope;
+			
+			  //操作		
+			switch(ope){
+			
+			
+			  		case  '±': 
+			  		// 第二个值需要添加符号
+			  		 secondNum = -1 * eval(secondNum);
+			  		break;
+			  		case'+':
+			  		firstNum = eval(firstNum +secondNum);
+			  		inputTextObj.value =  firstNum+"+";
+			  		firstNum +="+";
+			  		break;
+			  		case '-':
+			  
+			  		firstNum = eval(firstNum);
+			  		inputTextObj.value =  firstNum+"-";
+			  		firstNum+="-";
+			  		break;
+			  		case '*':
+			  		firstNum = eval(firstNum);
+			  			inputTextObj.value =  firstNum + "*";
+			  		firstNum+="*";
+			  		break;
+			  		case '/':
+			  		firstNum = eval(firstNum);
+			  			inputTextObj.value =  firstNum + "/";
+			  		firstNum+="/";
+			  		break;
+			  		case '=':
+			  		firstNum = eval(firstNum);
+			  		inputTextObj.value =  firstNum;
+			  		break;
+			  	  		default:
+			  	  		alert("不支持操作");
+			  		break;
+			}
+			
+			//纪录上一次的操作符
+			operator = ope;
+
+}
+
+
+function clearData(){
+		firstNum = "";
+		inputTextObj.value = "0";
+		operator = undefined;
+}
+
+</script>
+
+
+</body>
+</html>
+```
+
+1. 提供input type = "text" 显示数据
+2. 提供 input type ="button" 点击获取数据
+
+
 
 
 
