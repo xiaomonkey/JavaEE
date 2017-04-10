@@ -285,6 +285,23 @@ function clearData(){
 
 1. 提供input type = "text" 显示数据
 2. 提供 input type ="button" 点击获取数据
+3. 
+
+---
+
+
+
+
+#####4.6 DOM事件
+
+
+
+---
+
+#####Event 事件
+
+
+
 
 
 
